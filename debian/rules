@@ -9,7 +9,8 @@ PKG_TYPE    := $(shell jq -r '.type' composer.json)
 
 execute_after_dh_auto_build:
 	appstreamcli validate --pedantic --no-net \
-	    debian/cz.vitexsoftware.abraflexi-isds.metainfo.xml
+	    debian/cz.vitexsoftware.abraflexi-isds.metainfo.xml \
+	    debian/cz.vitexsoftware.multiflexi-abraflexi-isds.metainfo.xml
 
 override_dh_auto_test:
 	# Integration tests need live AbraFlexi/ISDS credentials; skip during package build.

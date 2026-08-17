@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="addon">
+  <id>cz.vitexsoftware.multiflexi-abraflexi-isds</id>
+  <extends>cz.vitexsoftware.abraflexi-isds</extends>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <name>AbraFlexi ISDS for MultiFlexi</name>
+  <name xml:lang="cs">AbraFlexi ISDS pro MultiFlexi</name>
+  <summary>MultiFlexi configuration of AbraFlexi ISDS sync</summary>
+  <summary xml:lang="cs">Konfigurace synchronizace AbraFlexi ISDS pro MultiFlexi</summary>
+  <description>
+    <p>
+      Registers the ISDS-to-AbraFlexi Events synchronizer as a MultiFlexi
+      application, so it can be scheduled and configured from the
+      MultiFlexi UI/CLI like any other MultiFlexi job.
+    </p>
+    <p xml:lang="cs">
+      Zaregistruje synchronizátor ISDS zpráv do Událostí AbraFlexi jako
+      aplikaci v MultiFlexi, takže ji lze plánovat a konfigurovat stejně
+      jako ostatní úlohy MultiFlexi.
+    </p>
+  </description>
+  <icon type="stock">multiflexi-abraflexi-isds</icon>
+  <url type="homepage">https://github.com/VitexSoftware/abraflexi-isds</url>
+  <developer id="cz.vitexsoftware">
+    <name>Vitex Software</name>
+  </developer>
+  <releases>
+    <release version="1.0.0" date="2026-08-17"/>
+  </releases>
+</component>

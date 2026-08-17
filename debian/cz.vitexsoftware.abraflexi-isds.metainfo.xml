@@ -5,6 +5,7 @@
   <project_license>MIT</project_license>
   <name>AbraFlexi ISDS</name>
   <summary>Synchronize Czech ISDS data messages to AbraFlexi Events</summary>
+  <summary xml:lang="cs">Synchronizuje datové zprávy z ISDS do Událostí v AbraFlexi</summary>
   <description>
     <p>
       abraflexi-isds logs in to a Czech ISDS (Informační systém datových
@@ -14,8 +15,16 @@
       sender is linked to a matching AbraFlexi Adresar record when its IČO
       can be resolved from the ISDS directory.
     </p>
+    <p xml:lang="cs">
+      abraflexi-isds se přihlásí do datové schránky (ISDS), stáhne přijaté
+      datové zprávy a pro každou dosud nesynchronizovanou zprávu vytvoří v
+      AbraFlexi Událost (evidence "udalost"). Přílohy zprávy se připojí k
+      Události a odesílatel se propojí s odpovídajícím záznamem v Adresáři
+      AbraFlexi, pokud se v adresáři datových schránek podaří dohledat jeho
+      IČO.
+    </p>
   </description>
-  <icon type="stock">utilities-terminal</icon>
+  <icon type="stock">abraflexi-isds</icon>
   <url type="homepage">https://github.com/VitexSoftware/abraflexi-isds</url>
   <url type="bugtracker">https://github.com/VitexSoftware/abraflexi-isds/issues</url>
   <developer id="cz.vitexsoftware">
