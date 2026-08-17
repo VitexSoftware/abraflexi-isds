@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="console-application">
+  <id>cz.vitexsoftware.abraflexi-isds</id>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <name>AbraFlexi ISDS</name>
+  <summary>Synchronize Czech ISDS data messages to AbraFlexi Events</summary>
+  <description>
+    <p>
+      abraflexi-isds logs in to a Czech ISDS (Informační systém datových
+      schránek / Data Box) account, fetches received data messages, and
+      creates an AbraFlexi Event (evidence "udalost") for each message not
+      synced yet. Message documents are attached to the Event, and the
+      sender is linked to a matching AbraFlexi Adresar record when its IČO
+      can be resolved from the ISDS directory.
+    </p>
+  </description>
+  <icon type="stock">utilities-terminal</icon>
+  <url type="homepage">https://github.com/VitexSoftware/abraflexi-isds</url>
+  <url type="bugtracker">https://github.com/VitexSoftware/abraflexi-isds/issues</url>
+  <developer id="cz.vitexsoftware">
+    <name>Vitex Software</name>
+  </developer>
+  <provides>
+    <binary>abraflexi-isds</binary>
+  </provides>
+  <releases>
+    <release version="1.0.0" date="2026-08-17"/>
+  </releases>
+</component>

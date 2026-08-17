@@ -1,0 +1,6 @@
+abraflexi-isds (1.0.0-1) unstable; urgency=medium
+
+  * Initial release: synchronize Czech ISDS data messages to AbraFlexi
+    Events.
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Mon, 17 Aug 2026 09:37:32 +0200

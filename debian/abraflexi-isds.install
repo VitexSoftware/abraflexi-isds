@@ -1,0 +1,5 @@
+src/AbraFlexiIsds/*.php    usr/lib/abraflexi-isds/AbraFlexiIsds/
+bin/isds2events.php        usr/share/abraflexi-isds/
+bin/abraflexi-isds         usr/bin/
+.env.template              etc/abraflexi-isds/
+debian/cz.vitexsoftware.abraflexi-isds.metainfo.xml    usr/share/metainfo/

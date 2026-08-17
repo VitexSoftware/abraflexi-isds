@@ -1,0 +1,31 @@
+.TH ABRAFLEXI-ISDS 1 "" "abraflexi-isds" "User Commands"
+.SH NAME
+abraflexi-isds \- synchronize Czech ISDS data messages to AbraFlexi Events
+.SH SYNOPSIS
+.B abraflexi-isds
+[\fB\-e\fR|\fB\-\-environment\fR=\fIFILE\fR]
+[\fB\-o\fR|\fB\-\-output\fR=\fIFILE\fR]
+.SH DESCRIPTION
+Logs in to the configured Czech ISDS (Informační systém datových schránek)
+data box, fetches received data messages, and creates an AbraFlexi Event
+(evidence "udalost") for each message that has not been synced yet. Message
+documents are attached to the Event, and the sender is linked to a matching
+AbraFlexi Adresar record when its IČO can be resolved from the ISDS
+directory. A JSON summary report is written to the output file.
+.SH OPTIONS
+.TP
+.BR \-e ", " \-\-environment =\fIFILE\fR
+Path to an environment file overriding /etc/abraflexi-isds/.env.template
+defaults (ABRAFLEXI_*, ISDS_* variables).
+.TP
+.BR \-o ", " \-\-output =\fIFILE\fR
+Where to write the JSON summary report. Defaults to standard output.
+.SH FILES
+.I /etc/abraflexi-isds/.env.template
+.RS
+Template listing all recognized configuration variables.
+.RE
+.SH SEE ALSO
+.BR abraflexi-tools (1)
+.SH AUTHOR
+Vítězslav Dvořák <info@vitexsoftware.cz>

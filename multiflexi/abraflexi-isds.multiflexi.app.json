@@ -1,0 +1,183 @@
+{
+  "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
+  "schemaVersion": "3.1.0",
+  "uuid": "8ab456c6-5f79-45cf-965c-47cb62d5045a",
+  "name": {
+    "en": "AbraFlexi ISDS",
+    "cs": "AbraFlexi ISDS"
+  },
+  "description": {
+    "en": "Synchronize Czech ISDS data messages to AbraFlexi Events",
+    "cs": "Synchronizuje datové zprávy z ISDS do Událostí v AbraFlexi"
+  },
+  "tags": [
+    "AbraFlexi",
+    "ISDS",
+    "DataBox"
+  ],
+  "requirements": [
+    "AbraFlexi"
+  ],
+  "homepage": "https://github.com/VitexSoftware/abraflexi-isds",
+  "executable": "abraflexi-isds",
+  "environment": [
+    {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi Company",
+        "cs": "AbraFlexi Společnost"
+      },
+      "defval": "demo_de",
+      "required": true,
+      "category": "API"
+    },
+    {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi Login",
+        "cs": "AbraFlexi Login"
+      },
+      "defval": "winstrom",
+      "required": true,
+      "category": "API"
+    },
+    {
+      "type": "password",
+      "description": {
+        "en": "AbraFlexi password",
+        "cs": "AbraFlexi heslo"
+      },
+      "defval": "winstrom",
+      "required": true,
+      "category": "API"
+    },
+    {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi Server URI",
+        "cs": "AbraFlexi Server URI"
+      },
+      "defval": "https://demo.flexibee.eu:5434",
+      "required": true,
+      "category": "API"
+    },
+    {
+      "type": "string",
+      "description": {
+        "en": "ISDS Data Box login",
+        "cs": "Přihlašovací jméno do datové schránky"
+      },
+      "defval": "",
+      "required": true,
+      "category": "ISDS"
+    },
+    {
+      "type": "password",
+      "description": {
+        "en": "ISDS Data Box password",
+        "cs": "Heslo do datové schránky"
+      },
+      "defval": "",
+      "required": true,
+      "category": "ISDS"
+    },
+    {
+      "type": "bool",
+      "description": {
+        "en": "Use the ISDS testing environment instead of production",
+        "cs": "Použít testovací prostředí ISDS místo produkčního"
+      },
+      "defval": "False",
+      "required": false,
+      "category": "ISDS"
+    },
+    {
+      "type": "integer",
+      "description": {
+        "en": "How many days back to look for received messages",
+        "cs": "Kolik dní zpětně načítat přijaté zprávy"
+      },
+      "defval": "90",
+      "required": false,
+      "category": "ISDS"
+    },
+    {
+      "type": "integer",
+      "description": {
+        "en": "Maximum number of messages to fetch per run",
+        "cs": "Maximální počet zpráv na jedno spuštění"
+      },
+      "defval": "1000",
+      "required": false,
+      "category": "ISDS"
+    },
+    {
+      "type": "bool",
+      "description": {
+        "en": "Mark a message as downloaded in ISDS once its Event was created",
+        "cs": "Označit zprávu v ISDS jako staženou po vytvoření Události"
+      },
+      "defval": "False",
+      "required": false,
+      "category": "ISDS"
+    },
+    {
+      "type": "bool",
+      "description": {
+        "en": "Look up the sender's IČO and link the Event to a matching Adresar record",
+        "cs": "Dohledat IČO odesílatele a propojit Událost s odpovídajícím záznamem v Adresáři"
+      },
+      "defval": "True",
+      "required": false,
+      "category": "ISDS"
+    },
+    {
+      "type": "string",
+      "description": {
+        "en": "Optional AbraFlexi activity type code for created Events",
+        "cs": "Volitelný kód typu aktivity pro vytvořené Události"
+      },
+      "defval": "",
+      "required": false,
+      "category": "Other"
+    },
+    {
+      "type": "bool",
+      "description": {
+        "en": "Enable debug mode",
+        "cs": "Zapnout režim ladění"
+      },
+      "defval": "False",
+      "required": false,
+      "category": "Behavior"
+    },
+    {
+      "type": "string",
+      "description": {
+        "en": "write log messages using",
+        "cs": "zapsat logovací zprávy pomocí"
+      },
+      "defval": "console|syslog",
+      "required": false,
+      "category": "Behavior"
+    }
+  ],
+  "exitCodes": {
+    "0": {
+      "description": {
+        "en": "Success",
+        "cs": "Úspěch"
+      },
+      "severity": "success",
+      "retry": false
+    },
+    "1": {
+      "description": {
+        "en": "One or more Events failed to sync",
+        "cs": "Synchronizace jedné nebo více Událostí selhala"
+      },
+      "severity": "error",
+      "retry": true
+    }
+  }
+}

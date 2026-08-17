@@ -1,0 +1,45 @@
+Source: abraflexi-isds
+Section: web
+Priority: optional
+Maintainer: Vítězslav Dvořák <info@vitexsoftware.cz>
+Build-Depends:
+ debhelper-compat (= 13),
+ jq,
+ moreutils,
+ pkg-php-tools,
+ phpunit,
+ php-cli,
+ appstream
+Standards-Version: 4.7.0
+Homepage: https://github.com/VitexSoftware/abraflexi-isds
+Rules-Requires-Root: no
+Vcs-Git: https://github.com/VitexSoftware/abraflexi-isds.git
+Vcs-Browser: https://github.com/VitexSoftware/abraflexi-isds
+
+Package: abraflexi-isds
+Architecture: all
+Depends:
+ php-spojenet-abraflexi,
+ php-dfridrich-czech-data-box,
+ php-cli,
+ ${misc:Depends}
+Suggests:
+ seznamds,
+ multiflexi-cli,
+ abraflexi-client-config
+Description: Synchronize Czech ISDS data messages to AbraFlexi Events
+ Fetches received Czech ISDS (Informační systém datových schránek / Data
+ Box) messages and creates a corresponding Event (evidence "udalost") in
+ AbraFlexi for each new message, attaching the message's documents and
+ optionally linking it to a matching Adresar record found by the sender's
+ IČO. Already synced messages are skipped on subsequent runs, and messages
+ can optionally be marked as downloaded in ISDS once synced.
+
+Package: multiflexi-abraflexi-isds
+Architecture: all
+Depends:
+ abraflexi-isds,
+ multiflexi-cli,
+ ${misc:Depends}
+Description: MultiFlexi configuration of AbraFlexi ISDS sync
+ Set up the ISDS-to-AbraFlexi Events synchronizer in MultiFlexi.

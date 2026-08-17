@@ -1,0 +1,35 @@
+#!/usr/bin/make -f
+
+PKG_VERSION := $(shell dpkg-parsechangelog -S Version | sed 's/~.*//')
+PKG_SOURCE  := $(shell jq -r '.name' composer.json)
+PKG_TYPE    := $(shell jq -r '.type' composer.json)
+
+%:
+	dh $@ --with phpcomposer
+
+execute_after_dh_auto_build:
+	appstreamcli validate --pedantic --no-net \
+	    debian/cz.vitexsoftware.abraflexi-isds.metainfo.xml
+
+override_dh_auto_test:
+	# Integration tests need live AbraFlexi/ISDS credentials; skip during package build.
+	:
+
+override_dh_install:
+	dh_install
+	mkdir -p debian/abraflexi-isds/usr/share/php/abraflexi-isds
+	install -m 644 debian/autoload.php debian/abraflexi-isds/usr/share/php/abraflexi-isds/autoload.php
+	sed -i "s|require_once __DIR__.'/../vendor/autoload.php';|require_once '/usr/share/php/abraflexi-isds/autoload.php';|" \
+		debian/abraflexi-isds/usr/share/abraflexi-isds/isds2events.php
+	sed -i "1a defined('APP_NAME') || define('APP_NAME', '$(PKG_SOURCE)');" \
+		debian/abraflexi-isds/usr/share/php/abraflexi-isds/autoload.php
+	sed -i "s|'unknown'|'$(PKG_SOURCE)'|" \
+		debian/abraflexi-isds/usr/share/php/abraflexi-isds/autoload.php
+	sed -i "s|'0.0.0'|'$(PKG_VERSION)'|" \
+		debian/abraflexi-isds/usr/share/php/abraflexi-isds/autoload.php
+	sed -i "s|'library'|'$(PKG_TYPE)'|g" \
+		debian/abraflexi-isds/usr/share/php/abraflexi-isds/autoload.php
+	sed -i "2a defined('APP_VERSION') || define('APP_VERSION', '$(PKG_VERSION)');" \
+		debian/abraflexi-isds/usr/share/php/abraflexi-isds/autoload.php
+	jq '.version = "$(PKG_VERSION)"' multiflexi/abraflexi-isds.multiflexi.app.json | sponge \
+		debian/multiflexi-abraflexi-isds/usr/lib/abraflexi-isds/multiflexi/abraflexi-isds.multiflexi.app.json

@@ -1,0 +1,11 @@
+#!/bin/sh
+# postinst script for multiflexi-abraflexi-isds
+set -e
+
+. /usr/share/debconf/confmodule
+
+APPLICATION=`echo $DPKG_MAINTSCRIPT_PACKAGE | sed 's/multiflexi-//'`
+for file in `ls /usr/lib/$APPLICATION/multiflexi/*.json`
+do
+	multiflexi-cli application:import-json --file $file
+done

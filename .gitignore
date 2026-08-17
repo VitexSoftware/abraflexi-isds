@@ -1,6 +1,13 @@
 composer.phar
 /vendor/
+composer.lock
 
-# Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
-# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
-# composer.lock
+# Debian build artifacts
+/debian/.debhelper/
+/debian/abraflexi-isds/
+/debian/multiflexi-abraflexi-isds/
+/debian/*.substvars
+/debian/*.debhelper.log
+/debian/files
+/debian/debhelper-build-stamp
+/obj-*/
