@@ -41,5 +41,9 @@ Depends:
  abraflexi-isds,
  multiflexi-cli,
  ${misc:Depends}
+Recommends:
+ multiflexi-datovka
 Description: MultiFlexi configuration of AbraFlexi ISDS sync
  Set up the ISDS-to-AbraFlexi Events synchronizer in MultiFlexi.
+ Data Box login is provided by a "Datovka" credential (see the
+ multiflexi-datovka package) assigned to the RunTemplate.

@@ -18,6 +18,9 @@
         "phpunit/phpunit": "^9",
         "phpstan/phpstan": "^1.10"
     },
+    "suggest": {
+        "vitexsoftware/multiflexi-datovka": "Provides the 'Datovka' MultiFlexi credential prototype used for Data Box login (LOGIN/PASSWORD/CERT_FILE/PRODUCTION)"
+    },
     "autoload": {
         "psr-4": {
             "AbraFlexiIsds\\": "src/AbraFlexiIsds/"

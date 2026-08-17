@@ -30,8 +30,6 @@ Shared::init(
         'ABRAFLEXI_LOGIN',
         'ABRAFLEXI_PASSWORD',
         'ABRAFLEXI_COMPANY',
-        'ISDS_LOGIN',
-        'ISDS_PASSWORD',
     ],
     \array_key_exists('environment', $options) ? $options['environment'] : (\array_key_exists('e', $options) ? $options['e'] : ''),
 );
@@ -39,12 +37,18 @@ Shared::init(
 $destination = \array_key_exists('output', $options) ? $options['output'] : (\array_key_exists('o', $options) ? $options['o'] : Shared::cfg('RESULT_FILE', 'php://stdout'));
 $localer = new Locale('cs_CZ', '../i18n', 'abraflexi-isds');
 
+// Data Box credentials come from the "Datovka" MultiFlexi credential
+// (see vitexsoftware/multiflexi-datovka): LOGIN+PASSWORD or CERT_FILE+PASSWORD.
+$certFile = Shared::cfg('CERT_FILE', '');
+$production = strtolower(Shared::cfg('PRODUCTION', 'false')) === 'true';
+
 $dataBox = new DataBox(Shared::cfg('ISDS_CACHE_DIR', sys_get_temp_dir().'/abraflexi-isds'));
-$dataBox->loginWithUsernameAndPassword(
-    Shared::cfg('ISDS_LOGIN'),
-    Shared::cfg('ISDS_PASSWORD'),
-    strtolower(Shared::cfg('ISDS_TEST', 'false')) !== 'true',
-);
+
+if ($certFile !== '') {
+    $dataBox->loginWithCertificateAndPassword($certFile, Shared::cfg('PASSWORD'), $production);
+} else {
+    $dataBox->loginWithUsernameAndPassword(Shared::cfg('LOGIN'), Shared::cfg('PASSWORD'), $production);
+}
 
 $eventor = new Event();
 $report = $eventor->createEvents($dataBox);
